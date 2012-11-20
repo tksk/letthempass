@@ -2,11 +2,14 @@
 package jp.co.nksol.letthempass {
 
 import com.twitter.util.Eval
+import org.shortpasta.icmp._
 
 object Letthempass extends App {
   val configEnv = (new Eval).apply[ConfigEnv](new java.io.File("defs/config.scala"))
   configEnv.buffer foreach { println _ }
 
+  val icmpPingResponse = IcmpUtil.executeIcmpPingRequest("192.168.56.1", 100)
+  println(icmpPingResponse)
 }
 
 trait ConfigEnv {
